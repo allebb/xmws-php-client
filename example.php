@@ -38,5 +38,5 @@ if ($ws_handle['response'] == 1101) {
 }
 
 // This can be used to debug, this shows the values of the response.
-$xmws->ShowXMLAsArrayData($xmws->Request($auto_prepared_xml));
+//$xmws->ShowXMLAsArrayData($xmws->Request($auto_prepared_xml));
 ?>
