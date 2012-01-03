@@ -10,7 +10,7 @@ $xmws = new xmwsclient();
 $xmws->wsurl = 'http://localhost/zpanelx/';
 
 // The server won't help you unless you can authenticate with the correct server API key (the key is a Zpanel setting, use ctrl_options::GetOption('apikey') to find out what yours is)
-$xmws->serverkey = 'ee8795c8c53bfdb3b2cc595186b68912';
+$xmws->serverkey = 'ee8795c8c53bfdb3b2cc595186b68912_';
 
 // Specify the 'module' where the web service class exists in.
 $xmws->module = 'test';
@@ -35,6 +35,8 @@ $ws_handle = $xmws->ResponseToArray($xmws->Request($auto_prepared_xml));
 
 if ($ws_handle['response'] == 1101) {
     echo "<table><tr><th>Server response data</th></tr><tr><td>" . $ws_handle['data'] . "</td></tr></table>";
+} else {
+    echo "Something appeared to go wrong! The webservice reported response code: <strong>".$ws_handle['response']."</strong>, The human readable version of this error is: '<strong>" .$ws_handle['data']. "</strong>'";
 }
 
 // This can be used to debug, this shows the values of the response.
