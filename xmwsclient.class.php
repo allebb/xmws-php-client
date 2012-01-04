@@ -21,7 +21,7 @@ class xmwsclient {
      * @return void
      */
     function InitRequest($wsurl, $mod, $met, $key, $user="", $pass="") {
-        $this->method = $mod;
+        $this->module = $mod;
         $this->method = $met;
         $this->username = $user;
         $this->password = $pass;

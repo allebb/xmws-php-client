@@ -6,11 +6,11 @@ require_once 'xmwsclient.class.php';
 $xmws = new xmwsclient();
 
 
-// With of without the trailing slash!
+// URL to the ZPanel server (with or without the trailing slash)
 $xmws->wsurl = 'http://localhost/zpanelx/';
 
 // The server won't help you unless you can authenticate with the correct server API key (the key is a Zpanel setting, use ctrl_options::GetOption('apikey') to find out what yours is)
-$xmws->serverkey = 'ee8795c8c53bfdb3b2cc595186b68912_';
+$xmws->serverkey = 'ee8795c8c53bfdb3b2cc595186b68912';
 
 // Specify the 'module' where the web service class exists in.
 $xmws->module = 'test';
@@ -40,5 +40,15 @@ if ($ws_handle['response'] == 1101) {
 }
 
 // This can be used to debug, this shows the values of the response.
-//$xmws->ShowXMLAsArrayData($xmws->Request($auto_prepared_xml));
+/*$xmws->ShowXMLAsArrayData($xmws->Request($auto_prepared_xml));*/
+
+
+// Another example of how to quickly grab everything is like so:-
+/*$another_xmws_instance = new xmwsclient();
+$another_xmws_instance->InitRequest('http://localhost/zpanelx/', 'test', 'TestMe', 'ee8795c8c53bfdb3b2cc595186b68912');
+$another_xmws_instance->SetRequestData('some_example_variable_data_here');
+$response_data = $another_xmws_instance->ResponseToArray($another_xmws_instance->Request($another_xmws_instance->BuildRequest()));
+
+echo "<strong>Response code:</strong> " .$response_data['response']. " <strong>the data response is:</strong> " .$response_data['data']. "";
+ */
 ?>
