@@ -114,12 +114,27 @@ class xmwsclient {
 
     /**
      * Simply outputs the contents of the response as a PHP array (using print_r())
-     * @param type $xml 
+     * @param string $xml 
      */
     function ShowXMLAsArrayData($xml) {
         echo "<pre>";
         print_r($this->ResponseToArray($xml));
         echo "</pre>";
+    }
+    
+    /**
+    * A simple way to build an XML section for the <content> tag, perfect for multiple data lines etc.
+    * @param string $name The name of the section <tag>.
+    * @param array $tags An associated array of the tag names and values to be added.
+    * @return string A formatted XML section block which can then be used in the <content> tag if required.
+    */
+    function NewXMLContentSection($name, $tags){
+    $xml = "\t<" . $name . ">\n";
+    foreach ($tags as $tagname => $tagval) {
+        $xml .="\t\t<" . $tagname . ">" . $tagval . "</" . $tagname . ">\n";
+    }
+    $xml .= "\t</" . $name . ">\n";
+    return $xml;
     }
 
 }
