@@ -158,7 +158,10 @@ class xmwsclient {
     
     /**
     * Takes an XML string and converts it into a usable PHP array.
-    * @param $xml string The XML content to convert to a PHP array.
+    * @param $contents string The XML content to convert to a PHP array.
+    * @param $get_arrtibutes bool Retieve the tag attrubtes too?
+    * @param $priotiry string
+    * @return array
     */
     static function XMLDataToArray($contents, $get_attributes = 1, $priority = 'tag') {
         if (!function_exists('xml_parser_create')) {
@@ -192,10 +195,11 @@ class xmwsclient {
             }
             if (isset($attributes) and $get_attributes) {
                 foreach ($attributes as $attr => $val) {
-                    if ($priority == 'tag')
+                    if ($priority == 'tag') {
                         $attributes_data[$attr] = $val;
-                    else
+                    } else {
                         $result['attr'][$attr] = $val; //Set all the attributes in a array called 'attr'
+                    }
                 }
             }
             if ($type == "open") {
