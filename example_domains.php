@@ -2,11 +2,35 @@
 
 require 'xmwsclient.class.php';
 
+
+/**
+ * If we recieve a 'Delete' request, we'll request that it is deleted from the server!
+ */
+if(isset($_GET['delete'])){
+    // A domain has been requested to be deleted, lets delete it then!
+    $xmws = new xmwsclient();
+    $xmws->InitRequest('http://localhost/zpanelx/', 'domains', 'DeleteDomain', 'ee8795c8c53bfdb3b2cc595186b68912');
+    $xmws->SetRequestData('<domainid>' .$_GET['delete']. '</domainid>');
+
+    $response_array = $xmws->XMLDataToArray($xmws->Request($xmws->BuildRequest()));
+    if($response_array['xmws']['response']=='1101'){
+    echo "<strong>The domain (Domain id: ".$response_array['xmws']['content']['domainid'].") has been deleted as requested!</strong>";
+    } else {
+        echo "An error occured requesting the domain deleteion, the web service reported: " .$response_array['xmws']['content']. "";
+    }
+}
+
+
+
+
+
 $xmws = new xmwsclient();
 $xmws->InitRequest('http://localhost/zpanelx/', 'domains', 'GetAllDomains', 'ee8795c8c53bfdb3b2cc595186b68912');
 $xmws->SetRequestData('');
 
 $response_array = $xmws->XMLDataToArray($xmws->Request($xmws->BuildRequest()), 0);
+
+
 
 if ($response_array['xmws']['response'] <> 1101) {
     echo "Something appeared to go wrong! The webservice reported response code: <strong>" . $alldomains_xml['response'] . "</strong>, The human readable version of this error is: '<strong>" . $alldomains_xml['data'] . "</strong>'";
@@ -21,7 +45,7 @@ if ($response_array['xmws']['response'] <> 1101) {
         } else {
              $isactive = 'Yes!';
         }
-        echo "<tr><td>" . $rows['domain'] . "</td><td>" . $rows['homedirectory'] . "</td><td>" . $isactive. "</td><td>" . date('c',$rows['datecreated']) . "</td></tr>";
+        echo "<tr><td>" . $rows['domain'] . "</td><td>" . $rows['homedirectory'] . "</td><td>" . $isactive. "</td><td>" . date('c',$rows['datecreated']) . "</td><td><a href=\"?delete=" .$rows['id']. "\">Delete</a></td></tr>";
     }
     echo "</table>";
     echo "Thats all folks! If your interested in seeing what the RAW data looks like, <a href=\"?raw\">click here</a>!";
@@ -36,4 +60,5 @@ if ($response_array['xmws']['response'] <> 1101) {
     
     }
 }
+
 ?>
