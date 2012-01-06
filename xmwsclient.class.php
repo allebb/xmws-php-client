@@ -139,24 +139,6 @@ class xmwsclient {
     
     
     /**
-    * This simply takes a SimpleDataList (Pipe and line seperated list) as an option in the XMWS web service
-    * framework and then splits it into an easy to use PHP array.
-    * @param $sdl string The SimpleDataList string (usually the contents of the <content> tag.
-    * @return array
-    */
-    static function SimpleDataListToArray($sdl) {
-        $lines = explode("\n", $sdl);
-        $lineid = 0;
-        $sdlarray = array();
-        foreach ($lines as $line) {
-            $linearray = array($lineid => explode('|', $line));
-            $sdlarray = array_merge($sdlarray, $linearray);
-            $lineid++;
-        }
-        return $sdlarray;
-    }
-    
-    /**
     * Takes an XML string and converts it into a usable PHP array.
     * @param $contents string The XML content to convert to a PHP array.
     * @param $get_arrtibutes bool Retieve the tag attrubtes too?
