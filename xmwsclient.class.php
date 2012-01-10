@@ -39,7 +39,7 @@ class xmwsclient {
      * @return string The formatted XML message ready to post.
      */
     function BuildRequest() {
-        $request_template = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" .
+        $request_template = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" .
                 "<xmws>" .
                 "\t<apikey>" . $this->serverkey . "</apikey>\n" .
                 "\t<request>" . $this->method . "</request>\n" .
