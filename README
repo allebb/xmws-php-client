@@ -1,5 +1,0 @@
-The XMWS PHP API client attempts to provide a PHP developer a simple class to connect to a given ZPanelX server and make web service requests using the XMWS (ZPanelX Modular Web Service) web service, the API Client (PHP Class) also has a few utility methods to enable the developer easily handle XML data using standard PHP arrays.
-
-If you have any questions on how to use this class please email: bobbyallen.uk@gmail.com
-
-Examples of how to use this class can be found here: https://github.com/bobsta63/XMWS-PHP-API-Client/wiki
