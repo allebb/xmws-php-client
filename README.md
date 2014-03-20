@@ -1,6 +1,6 @@
 # XMWS PHP Client
 
-XMWS stands for ZPanel(X) (M)odular (W)eb (S)ervice, XMWS is implemented in ZPanelX to provide a modular approach for both core and thirdparty ZPanel modules to expose web service endpoints for such things as
+XMWS stands for ZPanel(X) (M)odular (W)eb (S)ervice, XMWS is implemented in ZPanelX to provide a modular approach for both core and third-party ZPanelX modules to expose web service endpoints for such things as
 
 * Creating a new hosting account
 * Creating a new domain
