@@ -2,8 +2,8 @@
 
 /**
  * The official PHP XMWS API Client
- * @author ballen (ballen@zpanelcp.com)
- * @see https://github.com/bobsta63/XMWS-PHP-API-Client/wiki
+ * @author ballen (ballen@bobbyallen.me)
+ * @see https://github.com/bobsta63/XMWS-PHP-API-Client
  * @version 1.0.0
  */
 class xmwsclient {
@@ -16,21 +16,16 @@ class xmwsclient {
     public $wsurl = null;
     public $data = null;
 
-    /**
-     * This is a quick way to configure the class variables instead of specifying per line.
-     * @return void
-     */
-    function InitRequest($wsurl, $mod, $met, $key, $user="", $pass="") {
+    public function __construct($wsurl, $mod, $met, $key, $user = '', $pass = '') {
         $this->module = $mod;
         $this->method = $met;
         $this->username = $user;
         $this->password = $pass;
         $this->serverkey = $key;
         $this->wsurl = $wsurl;
-        return;
     }
 
-    function SetRequestData($string) {
+    function setRequestData($string) {
         $this->data = $string;
     }
 
@@ -38,7 +33,7 @@ class xmwsclient {
      * Automatically prepares and formats the XMWS XML request message based on your preset variables.
      * @return string The formatted XML message ready to post.
      */
-    function BuildRequest() {
+    function buildRequest() {
         $request_template = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" .
                 "<xmws>" .
                 "\t<apikey>" . $this->serverkey . "</apikey>\n" .
@@ -55,7 +50,7 @@ class xmwsclient {
      * @param type $post_xml
      * @return type 
      */
-    function Request($post_xml) {
+    function request($post_xml) {
         $full_wsurl = $this->wsurl . "/api/" . $this->module;
         return $this->PostRequest($full_wsurl, $post_xml);
     }
@@ -65,7 +60,7 @@ class xmwsclient {
      * @param type $xml
      * @return type 
      */
-    function ResponseToArray($xml) {
+    function responseToArray($xml) {
         return array('response' => $this->GetXMLTagValue($xml, 'response'), 'data' => $this->GetXMLTagValue($xml, 'content'));
     }
 
@@ -75,7 +70,7 @@ class xmwsclient {
      * @param type $tag
      * @return type 
      */
-    function GetXMLTagValue($xml, $tag) {
+    function getXMLTagValue($xml, $tag) {
         $xml = " " . $xml;
         $ini = strpos($xml, '<' . $tag . '>');
         if ($ini == 0)
@@ -92,11 +87,11 @@ class xmwsclient {
      * @param string $optional_headers Optional if you need to send additonal headers.
      * @return string The XML repsonse. 
      */
-    function PostRequest($url, $data, $optional_headers = null) {
+    function postRequest($url, $data, $optional_headers = null) {
         $params = array('http' => array(
                 'method' => 'POST',
                 'content' => $data
-                ));
+        ));
         if ($optional_headers !== null) {
             $params['http']['header'] = $optional_headers;
         }
@@ -116,35 +111,34 @@ class xmwsclient {
      * Simply outputs the contents of the response as a PHP array (using print_r())
      * @param string $xml 
      */
-    function ShowXMLAsArrayData($xml) {
+    function showXMLAsArrayData($xml) {
         echo "<pre>";
         print_r($this->ResponseToArray($xml));
         echo "</pre>";
     }
-    
+
     /**
-    * A simple way to build an XML section for the <content> tag, perfect for multiple data lines etc.
-    * @param string $name The name of the section <tag>.
-    * @param array $tags An associated array of the tag names and values to be added.
-    * @return string A formatted XML section block which can then be used in the <content> tag if required.
-    */
-    function NewXMLContentSection($name, $tags){
-    $xml = "\t<" . $name . ">\n";
-    foreach ($tags as $tagname => $tagval) {
-        $xml .="\t\t<" . $tagname . ">" . $tagval . "</" . $tagname . ">\n";
+     * A simple way to build an XML section for the <content> tag, perfect for multiple data lines etc.
+     * @param string $name The name of the section <tag>.
+     * @param array $tags An associated array of the tag names and values to be added.
+     * @return string A formatted XML section block which can then be used in the <content> tag if required.
+     */
+    function newXMLContentSection($name, $tags) {
+        $xml = "\t<" . $name . ">\n";
+        foreach ($tags as $tagname => $tagval) {
+            $xml .="\t\t<" . $tagname . ">" . $tagval . "</" . $tagname . ">\n";
+        }
+        $xml .= "\t</" . $name . ">\n";
+        return $xml;
     }
-    $xml .= "\t</" . $name . ">\n";
-    return $xml;
-    }
-    
-    
+
     /**
-    * Takes an XML string and converts it into a usable PHP array.
-    * @param $contents string The XML content to convert to a PHP array.
-    * @param $get_arrtibutes bool Retieve the tag attrubtes too?
-    * @param $priotiry string
-    * @return array
-    */
+     * Takes an XML string and converts it into a usable PHP array.
+     * @param $contents string The XML content to convert to a PHP array.
+     * @param $get_arrtibutes bool Retieve the tag attrubtes too?
+     * @param $priotiry string
+     * @return array
+     */
     static function XMLDataToArray($contents, $get_attributes = 1, $priority = 'tag') {
         if (!function_exists('xml_parser_create')) {
             return array();
@@ -186,7 +180,7 @@ class xmwsclient {
             }
             if ($type == "open") {
                 $parent[$level - 1] = & $current;
-                if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
+                if (!is_array($current) or ( !in_array($tag, array_keys($current)))) {
                     $current[$tag] = $result;
                     if ($attributes_data)
                         $current[$tag . '_attr'] = $attributes_data;
@@ -195,7 +189,7 @@ class xmwsclient {
                 }else {
                     if (isset($current[$tag][0])) {
                         $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                        $repeated_tag_index[$tag . '_' . $level]++;
+                        $repeated_tag_index[$tag . '_' . $level] ++;
                     } else {
                         $current[$tag] = array(
                             $current[$tag],
@@ -222,7 +216,7 @@ class xmwsclient {
                         if ($priority == 'tag' and $get_attributes and $attributes_data) {
                             $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
                         }
-                        $repeated_tag_index[$tag . '_' . $level]++;
+                        $repeated_tag_index[$tag . '_' . $level] ++;
                     } else {
                         $current[$tag] = array(
                             $current[$tag],
@@ -238,7 +232,7 @@ class xmwsclient {
                                 $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
                             }
                         }
-                        $repeated_tag_index[$tag . '_' . $level]++; //0 and 1 index is already taken
+                        $repeated_tag_index[$tag . '_' . $level] ++; //0 and 1 index is already taken
                     }
                 }
             } elseif ($type == 'close') {
