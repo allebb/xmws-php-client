@@ -16,13 +16,30 @@ class xmwsclient {
     public $wsurl = null;
     public $data = null;
 
-    public function __construct($wsurl, $mod, $met, $key, $user = '', $pass = '') {
-        $this->module = $mod;
-        $this->method = $met;
+    /**
+     * Initiate XMWS server and user connection settings.
+     * @param string $wsurl The URL to the ZPanelX server. (eg. http://localhost/zpanelx/ or http://cp.yourdomain.com/)
+     * @param string $key The API key that is configured on the ZPanelX server (enables API access)
+     * @param string $user The ZPX user of which to execute the requests as.
+     * @param string $pass The corresponding user's password.
+     * @return void
+     */
+    public function __construct($wsurl, $key, $user = '', $pass = '') {
         $this->username = $user;
         $this->password = $pass;
         $this->serverkey = $key;
         $this->wsurl = $wsurl;
+    }
+
+    /**
+     * Configures the request module and method ready for the request actioner.
+     * @param string $module The name of the module
+     * @param type $method The web service method of which to call in the module's 'code/webservice.ext.php' file.
+     * @return void
+     */
+    public function setRequestType($module, $method) {
+        $this->module = $mod;
+        $this->method = $met;
     }
 
     function setRequestData($string) {
