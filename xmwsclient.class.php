@@ -34,23 +34,28 @@ class xmwsclient {
     /**
      * Configures the request module and method ready for the request actioner.
      * @param string $module The name of the module
-     * @param type $method The web service method of which to call in the module's 'code/webservice.ext.php' file.
+     * @param string $method The web service method of which to call in the module's 'code/webservice.ext.php' file.
      * @return void
      */
     public function setRequestType($module, $method) {
-        $this->module = $mod;
-        $this->method = $met;
+        $this->module = $module;
+        $this->method = $method;
     }
 
-    function setRequestData($string) {
-        $this->data = $string;
+    /**
+     * Sets the request data portion of the request XML
+     * @param string $data XML tags that should be present in the <content> part of the XMWS webservice request.
+     * @return void
+     */
+    public function setRequestData($data) {
+        $this->data = $data;
     }
 
     /**
      * Automatically prepares and formats the XMWS XML request message based on your preset variables.
      * @return string The formatted XML message ready to post.
      */
-    function buildRequest() {
+    private function buildRequest() {
         $request_template = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" .
                 "<xmws>" .
                 "\t<apikey>" . $this->serverkey . "</apikey>\n" .
@@ -67,17 +72,17 @@ class xmwsclient {
      * @param type $post_xml
      * @return type 
      */
-    function request($post_xml) {
+    public function request($post_xml) {
         $full_wsurl = $this->wsurl . "/api/" . $this->module;
         return $this->PostRequest($full_wsurl, $post_xml);
     }
 
     /**
-     * This takes a RAW XMWS XML repsonse and converts it to a usable PHP array.
-     * @param type $xml
+     * This takes a raw XMWS XML repsonse and converts it to a usable PHP array.
+     * @param string $xml The 
      * @return type 
      */
-    function responseToArray($xml) {
+    public function responseToArray($xml) {
         return array('response' => $this->GetXMLTagValue($xml, 'response'), 'data' => $this->GetXMLTagValue($xml, 'content'));
     }
 
@@ -87,7 +92,7 @@ class xmwsclient {
      * @param type $tag
      * @return type 
      */
-    function getXMLTagValue($xml, $tag) {
+    public function getXMLTagValue($xml, $tag) {
         $xml = " " . $xml;
         $ini = strpos($xml, '<' . $tag . '>');
         if ($ini == 0)
@@ -104,7 +109,7 @@ class xmwsclient {
      * @param string $optional_headers Optional if you need to send additonal headers.
      * @return string The XML repsonse. 
      */
-    function postRequest($url, $data, $optional_headers = null) {
+    public function postRequest($url, $data, $optional_headers = null) {
         $params = array('http' => array(
                 'method' => 'POST',
                 'content' => $data
@@ -128,7 +133,7 @@ class xmwsclient {
      * Simply outputs the contents of the response as a PHP array (using print_r())
      * @param string $xml 
      */
-    function showXMLAsArrayData($xml) {
+    public function showXMLAsArrayData($xml) {
         echo "<pre>";
         print_r($this->ResponseToArray($xml));
         echo "</pre>";
@@ -140,7 +145,7 @@ class xmwsclient {
      * @param array $tags An associated array of the tag names and values to be added.
      * @return string A formatted XML section block which can then be used in the <content> tag if required.
      */
-    function newXMLContentSection($name, $tags) {
+    public function newXMLContentSection($name, $tags) {
         $xml = "\t<" . $name . ">\n";
         foreach ($tags as $tagname => $tagval) {
             $xml .="\t\t<" . $tagname . ">" . $tagval . "</" . $tagname . ">\n";
@@ -156,7 +161,7 @@ class xmwsclient {
      * @param $priotiry string
      * @return array
      */
-    static function XMLDataToArray($contents, $get_attributes = 1, $priority = 'tag') {
+    static function xmlDataToArray($contents, $get_attributes = 1, $priority = 'tag') {
         if (!function_exists('xml_parser_create')) {
             return array();
         }
@@ -260,5 +265,3 @@ class xmwsclient {
     }
 
 }
-
-?>
