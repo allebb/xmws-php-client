@@ -2,8 +2,9 @@
 
 /**
  * The official PHP XMWS API Client
- * @author ballen (ballen@bobbyallen.me)
- * @see https://github.com/bobsta63/XMWS-PHP-API-Client
+ * @author Bobby Allen (ballen@bobbyallen.me)
+ * @link https://github.com/bobsta63/xmws-php-client
+ * @license http://opensource.org/licenses/MIT MIT
  * @version 1.1.0
  */
 class xmwsclient {
@@ -74,7 +75,7 @@ class xmwsclient {
      */
     public function request($post_xml) {
         $full_wsurl = $this->wsurl . "/api/" . $this->module;
-        return $this->PostRequest($full_wsurl, $post_xml);
+        return $this->postRequest($full_wsurl, $post_xml);
     }
 
     /**
