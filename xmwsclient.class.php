@@ -4,7 +4,7 @@
  * The official PHP XMWS API Client
  * @author ballen (ballen@bobbyallen.me)
  * @see https://github.com/bobsta63/XMWS-PHP-API-Client
- * @version 1.0.0
+ * @version 1.1.0
  */
 class xmwsclient {
 
