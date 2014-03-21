@@ -1,0 +1,24 @@
+{
+    "name": "ballen/xmws-php-client",
+    "version": "1.1.0",
+    "description": "The official PHP API Client for the ZPanelX web hosting control panel",
+    "type": "library",
+    "keywords": ["xmws", "zpanelx", "zpanel"],
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Bobby Allen",
+            "email": "ballen@bobbyallen.me",
+            "homepage": "http://bobbyallen.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Ballen\\XmwsClient": "lib/"
+        }
+    }
+}
