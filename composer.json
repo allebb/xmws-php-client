@@ -4,7 +4,7 @@
     "description": "The official PHP API Client for the ZPanelX web hosting control panel",
     "type": "library",
     "keywords": ["xmws", "zpanelx", "zpanel"],
-    "license": "GPLv3",
+    "license": "MIT",
     "authors": [
         {
             "name": "Bobby Allen",
