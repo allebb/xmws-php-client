@@ -17,7 +17,7 @@ This PHP API client provides what aims to be an easy to use, PHP client library 
 ## Examples
 ```php
 // Load using composer
-require "../vendor/autoload.php";
+require "vendor/autoload.php";
 use Zpanelx\XmwsClient as xmwsclient;
 ```
 Examples of how to use this class can be found here: [https://github.com/bobsta63/XMWS-PHP-API-Client/wiki]()
