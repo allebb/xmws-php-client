@@ -1,6 +1,7 @@
 <?php
 
-require 'xmwsclient.class.php';
+require "../vendor/autoload.php";
+use Zpanelx\XmwsClient as xmwsclient;
 
 
 /**
@@ -24,8 +25,7 @@ if(isset($_GET['delete'])){
 
 
 
-$xmws = new xmwsclient();
-$xmws->InitRequest('http://localhost/zpanelx/', 'domains', 'GetAllDomains', 'ee8795c8c53bfdb3b2cc595186b68912');
+$xmws = new xmwsclient('http://192.168.25.10', 'domains', 'GetAllDomains', '224a1fea66dd6a25ad9e2103d1a7ca72');
 $xmws->SetRequestData('');
 
 $response_array = $xmws->XMLDataToArray($xmws->Request($xmws->BuildRequest()), 0);

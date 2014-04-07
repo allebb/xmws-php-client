@@ -1,4 +1,4 @@
-<?php
+<?php namespace Zpanelx;
 
 /**
  * The official PHP XMWS API Client
@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  * @version 1.1.0
  */
-class xmwsclient {
+class XmwsClient {
 
     public $module = null;
     public $method = null;
@@ -56,7 +56,7 @@ class xmwsclient {
      * Automatically prepares and formats the XMWS XML request message based on your preset variables.
      * @return string The formatted XML message ready to post.
      */
-    private function buildRequest() {
+    function buildRequest() {
         $request_template = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" .
                 "<xmws>" .
                 "\t<apikey>" . $this->serverkey . "</apikey>\n" .

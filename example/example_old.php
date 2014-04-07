@@ -1,6 +1,7 @@
 <?php
 
-require_once 'xmwsclient.class.php';
+require "vendor/autoload.php";
+use Zpanelx\XmwsClient as xmwsclient;
 
 // We create a new instance of the class.
 $xmws = new xmwsclient();
