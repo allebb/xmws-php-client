@@ -10,7 +10,7 @@ use Zpanelx\XmwsClient as xmwsclient;
 if(isset($_GET['delete'])){
     // A domain has been requested to be deleted, lets delete it then!
     $xmws = new xmwsclient();
-    $xmws->InitRequest('http://192.168.25.10', 'domains', 'DeleteDomain', '224a1fea66dd6a25ad9e2103d1a7ca72');
+    $xmws->InitRequest('http://localhost/zpanelx/', 'domains', 'DeleteDomain', 'ee8795c8c53bfdb3b2cc595186b68912');
     $xmws->SetRequestData('<domainid>' .$_GET['delete']. '</domainid>');
 
     $response_array = $xmws->XMLDataToArray($xmws->Request($xmws->BuildRequest()));
