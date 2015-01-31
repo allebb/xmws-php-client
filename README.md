@@ -1,6 +1,8 @@
 # XMWS PHP Client
 
-XMWS stands for ZPanel(X) (M)odular (W)eb (S)ervice, XMWS is implemented in ZPanelX to provide a modular approach for both core and third-party ZPanelX modules to expose web service endpoints for such things as
+*I will shortly be working on an improved XMWS client!*
+
+XMWS stands for ZPanel(X) (M)odular (W)eb (S)ervice, XMWS is implemented in ZPanelX (and the [Sentora](http://sentora.org) fork) to provide a modular approach for both core and third-party modules to expose web service endpoints for such actions as:
 
 * Creating a new hosting account
 * Creating a new domain
@@ -8,7 +10,7 @@ XMWS stands for ZPanel(X) (M)odular (W)eb (S)ervice, XMWS is implemented in ZPan
 * Updating an existing mailbox
 * etc. etc.
 
-This PHP API client provides what aims to be an easy to use, PHP client library (a simple class to connect to a given ZPanelX server and make web service requests using XMWS), the API Client (PHP Class) also has a few utility methods to enable the developer easily handle XML data using standard PHP arrays.
+This PHP API client provides what aims to be an easy to use, PHP client library (a simple class to connect to a given server and make web service requests using XMWS), the API client also has a few utility methods to enable the developer easily handle XML data using standard PHP arrays.
 
 ## Requirements
 
@@ -16,8 +18,8 @@ This PHP API client provides what aims to be an easy to use, PHP client library 
 
 ## Examples
 
-Examples of how to use this class can be found here: [https://github.com/bobsta63/XMWS-PHP-API-Client/wiki]()
+Examples of how to use this class can be found here: [https://github.com/bobsta63/xmws-php-client/wiki]()
 
 ## Support
 
-If you have any questions on how to use this class please email: [ballen@bobbyallen.me]()
+If you have any questions on how to use this class please email: [ballen@bobbyallen.me](mailto:ballen@bobbyallen.me)
