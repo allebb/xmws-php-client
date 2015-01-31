@@ -18,7 +18,7 @@ This PHP API client provides what aims to be an easy to use, PHP client library 
 
 ## Examples
 
-Examples of how to use this class can be found here: [https://github.com/bobsta63/xmws-php-client/wiki]()
+Examples of how to use this class can be found here: [https://github.com/bobsta63/xmws-php-client/wiki](https://github.com/bobsta63/xmws-php-client/wiki)
 
 ## Support
 
