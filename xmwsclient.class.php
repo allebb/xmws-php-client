@@ -56,7 +56,7 @@ class xmwsclient {
      * Automatically prepares and formats the XMWS XML request message based on your preset variables.
      * @return string The formatted XML message ready to post.
      */
-    private function buildRequest() {
+    public function buildRequest() {
         $request_template = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" .
                 "<xmws>" .
                 "\t<apikey>" . $this->serverkey . "</apikey>\n" .
