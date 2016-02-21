@@ -1,6 +1,6 @@
 # XMWS PHP Client
 
-*I will shortly be working on an improved XMWS client!*
+**Please note: I no longer maintain this library, I recommend that you use my new and improved [Senitor](https://github.com/bobsta63/senitor) library instead!**
 
 XMWS stands for ZPanel(X) (M)odular (W)eb (S)ervice, XMWS is implemented in ZPanelX (and the [Sentora](http://sentora.org) fork) to provide a modular approach for both core and third-party modules to expose web service endpoints for such actions as:
 
